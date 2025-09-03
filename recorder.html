@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recorder</title>
+  <link rel="stylesheet" href="recorder.css">
+</head>
+<body>
+  <div class="container">
+    <div>
+      <button class="principal" id="record" onclick="toggleRecording()">
+        <img src="./static/img/microfono.png" alt="">
+      </button>
+      <button class="secundario" id="stop" onclick="toggleRecording()">
+        <img src="./static/img/microfono_rojo.png" alt="">
+      </button>
+    </div>
+    <div>
+        <div id="text"></div>
+    </div>
+  </div>
+  <script src="/recorder.js"></script>
+  <script type="text/javascript">
+    recorder("/audio", response => {
+      document.getElementById("record").style.display="";
+      document.getElementById("stop").style.display="none";
+      if (!response || response == null) {
+          //Hola mi creador no implemento algo bueno aqui hoho
+          console.log("No response");
+          return;
+      }
+      console.log("El texto fue: " + response.text)
+      document.getElementById("text").innerHTML = response.text;
+      if (typeof response.file !== "undefined") {
+          //Reproducir el audio que regreso Python (si existe)
+          audioFile = response.file;
+          let audio = new Audio();
+          audio.setAttribute("src", "static/" + audioFile);
+          audio.play();
+      }
+    });
+  </script>
+</body>
+</html>

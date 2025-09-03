@@ -1,0 +1,28 @@
+* {
+  margin: 0 auto;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+}
+
+button > img {
+  width: 50rem;
+  height: 50rem;
+  cursor: pointer;
+}
+
+.secundario {
+  display: none;
+
+}
